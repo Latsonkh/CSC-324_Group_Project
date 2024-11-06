@@ -24,6 +24,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FB0543582CDC0E9E006DA15D /* ProjectPLogic */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ProjectPLogic; sourceTree = "<group>"; };
+		FB0543592CDC0EDB006DA15D /* ProjectPCLI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ProjectPCLI; sourceTree = "<group>"; };
 		FB9622072CD972FE003C3E6A /* ProjectP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB9622172CD972FF003C3E6A /* ProjectPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProjectPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB9622212CD972FF003C3E6A /* ProjectPUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProjectPUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +77,8 @@
 		FB9621FE2CD972FE003C3E6A = {
 			isa = PBXGroup;
 			children = (
+				FB0543592CDC0EDB006DA15D /* ProjectPCLI */,
+				FB0543582CDC0E9E006DA15D /* ProjectPLogic */,
 				FB9622092CD972FE003C3E6A /* ProjectP */,
 				FB96221A2CD972FF003C3E6A /* ProjectPTests */,
 				FB9622242CD972FF003C3E6A /* ProjectPUITests */,
