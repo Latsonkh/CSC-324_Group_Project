@@ -5,17 +5,23 @@ import PackageDescription
 
 let package = Package(
     name: "ProjectPLogic",
+    platforms: [.macOS(.v13), .iOS(.v16)],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "ProjectPLogic",
-            targets: ["ProjectPLogic"]),
+            targets: ["ProjectPLogic"]
+        ),
+    ],
+    dependencies: [
+        .package(url: "https://github.com/eastriverlee/LLM.swift.git", branch: "pinned")
     ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "ProjectPLogic"),
+            name: "ProjectPLogic",
+            dependencies: [
+                .product(name: "LLM", package: "llm.swift")
+            ]
+        ),
         .testTarget(
             name: "ProjectPLogicTests",
             dependencies: ["ProjectPLogic"]

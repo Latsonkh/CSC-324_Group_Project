@@ -5,10 +5,11 @@
 // https://swiftpackageindex.com/apple/swift-argument-parser/documentation
 
 import ArgumentParser
+import ProjectPLogic
 
 @main
-struct ProjectPCLI: ParsableCommand {
-    mutating func run() throws {
-        print("Hello, world!")
+struct ProjectPCLI: AsyncParsableCommand {
+    mutating func run() async throws {
+        await testLLM()
     }
 }
