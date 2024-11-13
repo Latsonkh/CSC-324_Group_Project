@@ -5,6 +5,8 @@
 //  Created by Caelan on 11/11/24.
 //
 
+#if !os(Linux)
+
 @preconcurrency import LLM
 
 public actor LLMHandler {
@@ -55,3 +57,5 @@ Physics problem:
         )
     }
 }
+
+#endif
