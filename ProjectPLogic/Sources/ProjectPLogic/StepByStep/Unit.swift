@@ -5,7 +5,7 @@
 //  Created by Caelan on 11/11/24.
 //
 
-public enum Unit: Equatable {
+public enum Unit: Sendable, Equatable {
     case none // temporary
     case distance(DistanceUnit)
 }
@@ -19,7 +19,7 @@ extension Unit {
     }
 }
 
-public enum MetricUnit: Equatable {
+public enum MetricUnit: Sendable, Equatable {
     case milli
     case centi
     case deci
@@ -41,12 +41,12 @@ extension MetricUnit {
 
 // MARK: - Distance
 
-public enum DistanceUnit: Equatable {
+public enum DistanceUnit: Sendable, Equatable {
     case meter(MetricUnit)
     case customary(CustomaryDistanceUnit)
 }
 
-public enum CustomaryDistanceUnit: Equatable {
+public enum CustomaryDistanceUnit: Sendable, Equatable {
     case inch
     case foot
     case yard
