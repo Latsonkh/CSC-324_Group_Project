@@ -11,5 +11,5 @@ public protocol Formula {
 
     var input: Input { get }
 
-    func evaluate() -> Output
+    func evaluate() -> Output?
 }

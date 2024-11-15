@@ -35,11 +35,15 @@ extension DistanceProblem: Problem {
         }
 
         let formula = DistanceFormula(input: (p1, p2))
+        guard let answer = formula.evaluate() else {
+            throw .invalidInput
+        }
+
         return Output(
             steps: [
                 Step.applyFormula(formula)
             ],
-            answer: formula.evaluate()
+            answer: answer
         )
     }
 }

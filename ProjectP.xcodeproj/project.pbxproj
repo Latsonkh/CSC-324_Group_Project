@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		FB7103422CE7C32A00E405F3 /* ProjectPLogic in Frameworks */ = {isa = PBXBuildFile; productRef = FB7103412CE7C32A00E405F3 /* ProjectPLogic */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		FB9622182CD972FF003C3E6A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -54,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB7103422CE7C32A00E405F3 /* ProjectPLogic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,6 +122,7 @@
 			);
 			name = ProjectP;
 			packageProductDependencies = (
+				FB7103412CE7C32A00E405F3 /* ProjectPLogic */,
 			);
 			productName = ProjectP;
 			productReference = FB9622072CD972FE003C3E6A /* ProjectP.app */;
@@ -202,6 +208,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				FB9622402CD978A0003C3E6A /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
+				FB7103402CE7C32A00E405F3 /* XCLocalSwiftPackageReference "ProjectPLogic" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FB9622082CD972FE003C3E6A /* Products */;
@@ -423,7 +430,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edu.grinnell.csc324.ProjectP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -451,7 +459,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edu.grinnell.csc324.ProjectP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -565,6 +574,13 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		FB7103402CE7C32A00E405F3 /* XCLocalSwiftPackageReference "ProjectPLogic" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ProjectPLogic;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		FB9622402CD978A0003C3E6A /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -577,6 +593,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		FB7103412CE7C32A00E405F3 /* ProjectPLogic */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ProjectPLogic;
+		};
 		FB87FC052CD9797900D5EAEA /* SwiftLintBuildToolPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FB9622402CD978A0003C3E6A /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
