@@ -7,11 +7,11 @@
 
 struct DistanceFormula: Formula {
     typealias Input = (Point, Point)
-    typealias Output = Double
+    typealias Output = Value
 
     let input: Input
 
-    func evaluate() -> Output {
+    func evaluate() -> Output? {
         input.0.distance(to: input.1)
     }
 

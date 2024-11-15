@@ -11,7 +11,7 @@ public struct Input {
 
 public struct Variable {
     public let name: String
-    public let value: Value
+    public let value: Any
 }
 
 extension Input {
