@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct Point: Value {
+public struct Point: Value {
     let x: Double
     let y: Double
 }
 
 extension Point: CustomStringConvertible {
-    var description: String {
+    public var description: String {
         "(\(x), \(y))"
     }
 }
