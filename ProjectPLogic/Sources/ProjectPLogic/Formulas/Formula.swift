@@ -11,5 +11,7 @@ public protocol Formula: Sendable {
 
     var input: Input { get }
 
+    var description: String { get }
+
     func evaluate() -> Output?
 }

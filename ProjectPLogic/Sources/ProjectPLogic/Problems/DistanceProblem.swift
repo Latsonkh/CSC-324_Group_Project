@@ -28,8 +28,8 @@ p2 = (x2, y2)
 
 extension DistanceProblem: Problem {
     public func solve() throws(ProblemError) -> Output {
-        let p1 = input.get("p1")?.value as? Point
-        let p2 = input.get("p2")?.value as? Point
+        let p1 = input.get("p_1")?.value as? Point
+        let p2 = input.get("p_2")?.value as? Point
         guard let p1, let p2 else {
             throw .invalidInput
         }
