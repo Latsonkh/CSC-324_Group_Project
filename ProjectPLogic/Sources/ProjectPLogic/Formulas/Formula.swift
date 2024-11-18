@@ -5,11 +5,11 @@
 //  Created by Caelan on 11/13/24.
 //
 
-public protocol Formula {
+public protocol Formula: Sendable {
     associatedtype Input
     associatedtype Output
 
     var input: Input { get }
 
-    func evaluate() -> Output
+    func evaluate() -> Output?
 }

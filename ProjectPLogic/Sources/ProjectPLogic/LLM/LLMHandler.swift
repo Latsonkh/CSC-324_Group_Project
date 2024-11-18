@@ -51,7 +51,7 @@ Physics problem:
         let output = try problem.solve()
 
         return Solution(
-            classification: .twoPointsDistance,
+            classification: classification,
             input: problem.input,
             output: output
         )

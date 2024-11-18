@@ -5,13 +5,13 @@
 //  Created by Caelan on 11/13/24.
 //
 
-public struct Input {
+public struct Input: Sendable {
     public let variables: [Variable]
 }
 
-public struct Variable {
+public struct Variable: Sendable {
     public let name: String
-    public let value: Value
+    public let value: any Sendable
 }
 
 extension Input {

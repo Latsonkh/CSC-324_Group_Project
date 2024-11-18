@@ -5,7 +5,7 @@
 //  Created by Caelan on 11/13/24.
 //
 
-public enum Classification {
+public enum Classification: Sendable {
     case twoPointsDistance
 }
 

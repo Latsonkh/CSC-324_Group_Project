@@ -5,8 +5,24 @@
 //  Created by Caelan on 11/13/24.
 //
 
-public struct Solution {
+public struct Solution: Sendable {
     public let classification: Classification
-    public let input: Input
-    public let output: Output
+    let input: Input
+    let output: Output
+
+    public let steps: [Step]
+    public var answer: Value {
+        output.answer
+    }
+
+    init(classification: Classification, input: Input, output: Output) {
+        self.classification = classification
+        self.input = input
+        self.output = output
+
+        self.steps = [
+            .classify(classification),
+            .setupInput(input)
+        ] + output.steps
+    }
 }

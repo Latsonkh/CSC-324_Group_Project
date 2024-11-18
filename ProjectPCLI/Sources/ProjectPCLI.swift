@@ -19,14 +19,10 @@ struct ProjectPCLI: AsyncParsableCommand {
         let exampleSolution = try await exampleDistanceProblem()
 
         print("steps:")
-        print("1. classify problem:", exampleSolution.classification.description)
-        print("2. set up inputs:\n", exampleSolution.input.variables.map {
-            "\($0.name) = \($0.value)"
-        }.joined(separator: "\n "))
-        for (idx, step) in exampleSolution.output.steps.enumerated() {
-            print("\(idx + 3).", step.toString())
+        for (idx, step) in exampleSolution.steps.enumerated() {
+            print("\(idx + 1).", step.toString())
         }
         print("----")
-        print("answer:", exampleSolution.output.answer)
+        print("answer:", exampleSolution.answer)
     }
 }
