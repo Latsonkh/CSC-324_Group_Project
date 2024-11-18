@@ -33,6 +33,7 @@ extension Value {
 
 extension Value: CustomStringConvertible {
     public var description: String {
-        "\(value) \(unit.suffix)"
+        let formattedValue = "\(value.formatted(.number.precision(.fractionLength(0...3))))"
+        return "\(formattedValue)\\text{ \(unit.suffix)}"
     }
 }

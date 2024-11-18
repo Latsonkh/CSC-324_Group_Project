@@ -11,14 +11,14 @@ public func exampleDistanceProblem() async throws -> Solution {
 
     let input = Input(variables: [
         Variable(
-            name: "p1",
+            name: "p_1",
             value: Point(
                 x: Value(value: 0, unit: .distance(.meter(.kilo))),
                 y: Value(value: 0, unit: .distance(.meter(.kilo)))
             )!
         ),
         Variable(
-            name: "p2",
+            name: "p_2",
             value: Point(
                 x: Value(value: -2.4, unit: .distance(.meter(.kilo))),
                 y: Value(value: 3.1 - 5.2, unit: .distance(.meter(.kilo)))

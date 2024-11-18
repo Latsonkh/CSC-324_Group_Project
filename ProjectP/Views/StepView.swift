@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ProjectPLogic
+import LaTeXSwiftUI
 
 public struct StepView: View {
     let number: Int
@@ -17,15 +18,27 @@ public struct StepView: View {
     }
 }
 
-public struct CardView: View {
+public struct CardView<Content: View>: View {
     let title: String
-    let content: String
+    let content: () -> Content
+
+    init(title: String, content: String) where Content == LaTeX {
+        self.title = title
+        self.content = {
+            LaTeX(content)
+        }
+    }
+
+    init(title: String, @ViewBuilder content: @escaping () -> Content) {
+        self.title = title
+        self.content = content
+    }
 
     public var body: some View {
         VStack(alignment: .leading) {
             Text(title)
                 .foregroundStyle(.secondary)
-            Text(content)
+            content()
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
