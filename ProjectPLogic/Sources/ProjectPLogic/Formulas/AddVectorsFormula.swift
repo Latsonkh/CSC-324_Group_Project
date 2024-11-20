@@ -14,8 +14,8 @@ struct AddVectorsFormula: Formula {
     func evaluate() -> Output? {
 
         // Sum the x and y components of vectors in the array
-        var totalx:Double = 0;
-        var totaly:Double = 0;
+        var totalx: Double = 0
+        var totaly: Double = 0
 
         for v in input {
             totalx += v.x.value
