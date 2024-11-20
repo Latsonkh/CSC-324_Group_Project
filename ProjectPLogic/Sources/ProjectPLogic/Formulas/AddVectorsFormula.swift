@@ -17,7 +17,7 @@ struct AddVectorsFormula: Formula {
         var totalx:Double = 0;
         var totaly:Double = 0;
 
-        for v:Vector in input {
+        for v in input {
             totalx += v.x.value
             totaly += v.y.value
         }
