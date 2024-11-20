@@ -1,3 +1,10 @@
+//
+//  ContentView.swift
+//  ProjectP
+//
+//  Created by Caelan on 11/4/24.
+//
+
 import SwiftUI
 import VisionKit
 import ProjectPLogic
@@ -7,15 +14,12 @@ enum ProblemInput {
     case image(UIImage)
 }
 
-struct Solution {
-    let result: String
-}
-
 struct ContentView: View {
     @State private var loading = false
     @State private var showingSolution = false
     @State private var problem: ProblemInput?
     @State private var solution: Solution?
+
     @State private var showingDocumentScanner = false
     @State private var scannedImage: UIImage?
 
@@ -26,6 +30,21 @@ struct ContentView: View {
                     .progressViewStyle(.circular)
             } else {
                 Button("Try Example Problem") {
+                    self.loading = true
+                    Task {
+                        let exampleSolution = try await exampleDistanceProblem()
+                        // swiftlint:disable line_length
+                        self.problem = ProblemInput.text("""
+    A person walks in the following pattern: 3.1 km north, then 2.4 km west, and finally 5.2km south. How far could a bird fly in a straight line from the same starting point to the same final point?
+    """)
+                        // swiftlint:enable line_length
+                        self.solution = exampleSolution
+                        self.showingSolution = true
+                        self.loading = false
+                    }
+                }
+
+                Button("Scan Problem") {
                     showingDocumentScanner = true
                 }
             }
@@ -46,7 +65,7 @@ struct ContentView: View {
 
                     Task {
                         do {
-                            let exampleSolution = try await fetchExampleSolution()
+                            let exampleSolution = try await exampleDistanceProblem()
                             self.solution = exampleSolution
                             self.showingSolution = true
                             self.loading = false
@@ -59,34 +78,6 @@ struct ContentView: View {
                 self.showingDocumentScanner = false
             }
         }
-    }
-}
-
-struct SolutionView: View {
-    let problem: ProblemInput
-    let solution: Solution
-
-    var body: some View {
-        VStack {
-            Text("Solution")
-                .font(.title)
-                .padding()
-
-            switch problem {
-            case .text(let text):
-                Text("Problem: \(text)")
-            case .image(_):
-                Text("Problem: Scanned Image")
-            }
-
-            Text("Solution: \(solution.result)")
-                .padding()
-
-            Button("Close") {
-                // Handle closing
-            }
-        }
-        .padding()
     }
 }
 
@@ -135,8 +126,4 @@ struct DocumentScannerView: UIViewControllerRepresentable {
             completion(scannedImage)
         }
     }
-}
-
-func fetchExampleSolution() async throws -> Solution {
-    return Solution(result: "Example solution result.")
 }

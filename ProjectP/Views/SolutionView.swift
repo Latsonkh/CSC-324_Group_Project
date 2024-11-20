@@ -37,6 +37,9 @@ public struct SolutionView: View {
                     switch problem {
                         case .text(let string):
                             Text(string)
+                        case .image(let image):
+                            Image(uiImage: image)
+                                .frame(width: 300)
                     }
 
                     Text("Answer")
