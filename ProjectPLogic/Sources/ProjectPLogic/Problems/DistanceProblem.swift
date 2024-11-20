@@ -43,7 +43,7 @@ extension DistanceProblem: Problem {
             steps: [
                 Step.applyFormula(formula)
             ],
-            answer: answer
+            answer: OutputValue.value(answer)
         )
     }
 }

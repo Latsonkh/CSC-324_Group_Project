@@ -11,7 +11,7 @@ public struct Solution: Sendable {
     let output: Output
 
     public let steps: [Step]
-    public var answer: Value {
+    public var answer: OutputValue {
         output.answer
     }
 
