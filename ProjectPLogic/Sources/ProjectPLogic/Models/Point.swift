@@ -7,8 +7,10 @@
 
 import Foundation
 
+public typealias Vector = Point
+
 /// A tuple with x and y values, representing a 2d point.
-struct Point {
+public struct Point: Sendable {
     let x: Value
     let y: Value
 

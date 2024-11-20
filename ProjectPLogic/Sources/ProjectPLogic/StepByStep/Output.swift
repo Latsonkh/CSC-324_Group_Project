@@ -7,5 +7,10 @@
 
 public struct Output: Sendable {
     public let steps: [Step]
-    public let answer: Value
+    public let answer: OutputValue
+}
+
+public enum OutputValue: Sendable {
+    case value(Value)
+    case vector(Vector)
 }
