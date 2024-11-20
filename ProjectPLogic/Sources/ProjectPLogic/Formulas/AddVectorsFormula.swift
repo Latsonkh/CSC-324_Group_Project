@@ -27,6 +27,6 @@ struct AddVectorsFormula: Formula {
     }
 
     func toString() -> String {
-        "v1 + v2 + v3 ..."
+        "v_1 + v_2 + v_3 ..."
     }
 }
