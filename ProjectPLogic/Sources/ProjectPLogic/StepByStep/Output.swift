@@ -14,3 +14,14 @@ public enum OutputValue: Sendable {
     case value(Value)
     case vector(Vector)
 }
+
+extension OutputValue: CustomStringConvertible {
+    public var description: String {
+        switch self {
+            case .value(let value):
+                value.description
+            case .vector(let vector):
+                vector.description
+        }
+    }
+}
