@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		76429A4B2CEBE9FE00DBD86C /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = 76429A4A2CEBE9FE00DBD86C /* GoogleGenerativeAI */; };
 		FB7103422CE7C32A00E405F3 /* ProjectPLogic in Frameworks */ = {isa = PBXBuildFile; productRef = FB7103412CE7C32A00E405F3 /* ProjectPLogic */; };
 		FB7103892CE7F90600E405F3 /* LaTeXSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = FB7103882CE7F90600E405F3 /* LaTeXSwiftUI */; };
 /* End PBXBuildFile section */
@@ -36,9 +37,22 @@
 		FB9622212CD972FF003C3E6A /* ProjectPUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProjectPUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		FBE1C23F2CF12C9F005FF4CF /* Exceptions for "ProjectP" folder in "ProjectP" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = FB9622062CD972FE003C3E6A /* ProjectP */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		FB9622092CD972FE003C3E6A /* ProjectP */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				FBE1C23F2CF12C9F005FF4CF /* Exceptions for "ProjectP" folder in "ProjectP" target */,
+			);
 			path = ProjectP;
 			sourceTree = "<group>";
 		};
@@ -61,6 +75,7 @@
 			files = (
 				FB7103422CE7C32A00E405F3 /* ProjectPLogic in Frameworks */,
 				FB7103892CE7F90600E405F3 /* LaTeXSwiftUI in Frameworks */,
+				76429A4B2CEBE9FE00DBD86C /* GoogleGenerativeAI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +141,7 @@
 			packageProductDependencies = (
 				FB7103412CE7C32A00E405F3 /* ProjectPLogic */,
 				FB7103882CE7F90600E405F3 /* LaTeXSwiftUI */,
+				76429A4A2CEBE9FE00DBD86C /* GoogleGenerativeAI */,
 			);
 			productName = ProjectP;
 			productReference = FB9622072CD972FE003C3E6A /* ProjectP.app */;
@@ -213,6 +229,7 @@
 				FB9622402CD978A0003C3E6A /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
 				FB7103402CE7C32A00E405F3 /* XCLocalSwiftPackageReference "ProjectPLogic" */,
 				FB7103872CE7F90600E405F3 /* XCRemoteSwiftPackageReference "LaTeXSwiftUI" */,
+				76429A492CEBE80E00DBD86C /* XCRemoteSwiftPackageReference "generative-ai-swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FB9622082CD972FE003C3E6A /* Products */;
@@ -421,6 +438,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ProjectP/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera needs to be accessed to scan problems.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -451,6 +469,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ProjectP/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera needs to be accessed to scan problems.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -589,6 +608,14 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		76429A492CEBE80E00DBD86C /* XCRemoteSwiftPackageReference "generative-ai-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/generative-ai-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.6;
+			};
+		};
 		FB7103872CE7F90600E405F3 /* XCRemoteSwiftPackageReference "LaTeXSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/colinc86/LaTeXSwiftUI";
@@ -608,6 +635,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		76429A4A2CEBE9FE00DBD86C /* GoogleGenerativeAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 76429A492CEBE80E00DBD86C /* XCRemoteSwiftPackageReference "generative-ai-swift" */;
+			productName = GoogleGenerativeAI;
+		};
 		FB7103412CE7C32A00E405F3 /* ProjectPLogic */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ProjectPLogic;

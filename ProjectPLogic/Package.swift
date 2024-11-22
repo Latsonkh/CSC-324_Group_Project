@@ -6,10 +6,10 @@ import PackageDescription
 // disable LLM.swift dependency on linux
 #if !os(Linux)
 let packageDependencies: [Package.Dependency] = [
-    .package(url: "https://github.com/eastriverlee/LLM.swift.git", branch: "pinned")
+    .package(url: "https://github.com/google/generative-ai-swift", from: "0.5.6")
 ]
 let targetDependencies: [Target.Dependency] = [
-    .product(name: "LLM", package: "llm.swift")
+    .product(name: "GoogleGenerativeAI", package: "generative-ai-swift")
 ]
 #else
 let packageDependencies: [Package.Dependency] = []

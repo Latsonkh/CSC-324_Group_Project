@@ -1,8 +1,8 @@
 //
-// AddVectorsFormula.swift
-// ProjectPLogic
+//  AddVectorsFormula.swift
+//  ProjectPLogic
 //
-// Created by Henry on 11/18/24
+//  Created by Henry on 11/18/24
 //
 
 struct AddVectorsFormula: Formula {
@@ -12,7 +12,6 @@ struct AddVectorsFormula: Formula {
     let input: Input
 
     func evaluate() -> Output? {
-
         // Sum the x and y components of vectors in the array
         var totalx: Double = 0
         var totaly: Double = 0
@@ -26,7 +25,7 @@ struct AddVectorsFormula: Formula {
         return Vector.init(x: Value(value: totalx, unit: Unit.none), y: Value(value: totaly, unit: Unit.none))
     }
 
-    func toString() -> String {
+    var description: String {
         "v_1 + v_2 + v_3 ..."
     }
 }

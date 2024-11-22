@@ -5,7 +5,7 @@
 //  Created by Caelan on 11/13/24.
 //
 
-public enum Classification: Sendable {
+public enum Classification: Sendable, CaseIterable {
     case twoPointsDistance
     case addVectors
 }
@@ -29,6 +29,13 @@ extension Classification {
         switch self {
             case .twoPointsDistance: DistanceProblem.from(llmOutput: llmOutput)
             case .addVectors: PositionProblem.from(llmOutput: llmOutput)
+        }
+    }
+    
+    public static func fromString(name: String) -> Self {
+        switch name {
+            case "Distance Between Two Points": .twoPointsDistance
+            default: .twoPointsDistance // TODO: Should be error
         }
     }
 }
