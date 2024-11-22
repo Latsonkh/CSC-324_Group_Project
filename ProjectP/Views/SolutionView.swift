@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ProjectPLogic
+import LaTeXSwiftUI
 
 // UIKit close button for SwiftUI
 private struct CloseButton: UIViewRepresentable {
@@ -31,13 +32,20 @@ public struct SolutionView: View {
         NavigationStack {
             ScrollView(.vertical) {
                 VStack(alignment: .leading) {
-                    Text("Solution")
-                        .font(.title2)
+                    Text("Problem")
+                        .font(.headline)
                     switch problem {
                         case .text(let string):
                             Text(string)
+                        case .image(let image):
+                            Image(uiImage: image)
+                                .frame(width: 300)
                     }
 
+                    Text("Answer")
+                        .font(.headline)
+                        .padding(.top)
+                    LaTeX("$\(solution.answer.description)$")
                 }
                 .padding()
                 .padding(.top, 0)
@@ -52,9 +60,23 @@ public struct SolutionView: View {
 
                 VStack(spacing: 16) {
                     ForEach(Array(solution.steps.enumerated()), id: \.offset) { idx, step in
-                        StepView(number: idx + 1, step: step)
+                        if case let .classify(classification) = step {
+                            CardView(title: "Step \(idx + 1)") {
+                                Text("Identify problem type:")
+                                Button {
+                                    print("todo")
+                                } label: {
+                                    HStack(spacing: 4) {
+                                        Text(classification.description)
+                                        Image(systemName: "info.circle.fill")
+                                    }
+                                }
+                            }
+                        } else {
+                            StepView(number: idx + 1, step: step)
+                        }
                     }
-                    CardView(title: "Answer", content: solution.answer.description)
+                    CardView(title: "Answer", content: "$\(solution.answer.description)$")
                 }
                 .padding(.horizontal)
             }

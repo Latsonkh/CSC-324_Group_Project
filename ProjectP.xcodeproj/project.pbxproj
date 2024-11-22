@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FB7103422CE7C32A00E405F3 /* ProjectPLogic in Frameworks */ = {isa = PBXBuildFile; productRef = FB7103412CE7C32A00E405F3 /* ProjectPLogic */; };
+		FB7103892CE7F90600E405F3 /* LaTeXSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = FB7103882CE7F90600E405F3 /* LaTeXSwiftUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB7103422CE7C32A00E405F3 /* ProjectPLogic in Frameworks */,
+				FB7103892CE7F90600E405F3 /* LaTeXSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +125,7 @@
 			name = ProjectP;
 			packageProductDependencies = (
 				FB7103412CE7C32A00E405F3 /* ProjectPLogic */,
+				FB7103882CE7F90600E405F3 /* LaTeXSwiftUI */,
 			);
 			productName = ProjectP;
 			productReference = FB9622072CD972FE003C3E6A /* ProjectP.app */;
@@ -209,6 +212,7 @@
 			packageReferences = (
 				FB9622402CD978A0003C3E6A /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
 				FB7103402CE7C32A00E405F3 /* XCLocalSwiftPackageReference "ProjectPLogic" */,
+				FB7103872CE7F90600E405F3 /* XCRemoteSwiftPackageReference "LaTeXSwiftUI" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FB9622082CD972FE003C3E6A /* Products */;
@@ -414,8 +418,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera needs to be accessed to scan problems.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -445,6 +451,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera needs to be accessed to scan problems.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -582,6 +589,14 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		FB7103872CE7F90600E405F3 /* XCRemoteSwiftPackageReference "LaTeXSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/colinc86/LaTeXSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.2;
+			};
+		};
 		FB9622402CD978A0003C3E6A /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
@@ -596,6 +611,11 @@
 		FB7103412CE7C32A00E405F3 /* ProjectPLogic */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ProjectPLogic;
+		};
+		FB7103882CE7F90600E405F3 /* LaTeXSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB7103872CE7F90600E405F3 /* XCRemoteSwiftPackageReference "LaTeXSwiftUI" */;
+			productName = LaTeXSwiftUI;
 		};
 		FB87FC052CD9797900D5EAEA /* SwiftLintBuildToolPlugin */ = {
 			isa = XCSwiftPackageProductDependency;

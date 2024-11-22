@@ -4,7 +4,8 @@
 //
 // Created by Henry on 11/20/24
 //
-final class PositionProblem{
+
+final class PositionProblem {
     let input: Input
 
     init(input: Input) {
