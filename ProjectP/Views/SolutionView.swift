@@ -9,19 +9,6 @@ import SwiftUI
 import ProjectPLogic
 import LaTeXSwiftUI
 
-// UIKit close button for SwiftUI
-private struct CloseButton: UIViewRepresentable {
-    private let action: () -> Void
-
-    init(action: @escaping () -> Void) { self.action = action }
-
-    func makeUIView(context: Context) -> UIButton {
-        UIButton(type: .close, primaryAction: UIAction { _ in action() })
-    }
-
-    func updateUIView(_ uiView: UIButton, context: Context) {}
-}
-
 public struct SolutionView: View {
     let problem: ProblemInput
     let solution: Solution
@@ -39,7 +26,9 @@ public struct SolutionView: View {
                             Text(string)
                         case .image(let image):
                             Image(uiImage: image)
-                                .frame(width: 300)
+                                .resizable()
+                                .scaledToFit()
+                                .clipShape(RoundedRectangle(cornerRadius: 6))
                     }
 
                     Text("Answer")
