@@ -49,4 +49,16 @@ extension Point {
 
         return Value(value: sqrt(dx * dx + dy * dy), unit: targetUnit)
     }
+
+    // Adds 2 Vectors
+    // Henry
+    func add(vec: Vector) -> Vector? {
+        return Vector(x: Value(value: self.x.value + vec.x.value, unit: Unit.none), y: Value(value: self.y.value + vec.y.value, unit: Unit.none))
+    }
+
+    // Multiplies Vector with Value
+    // Henry
+    func mult(val: Value) -> Vector? {
+        return Vector(x: Value(value: self.x.value * val.value, unit: Unit.none), y: Value(value: self.y.value * val.value, unit: Unit.none))
+    }
 }

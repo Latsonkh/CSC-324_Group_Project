@@ -8,6 +8,7 @@
 public enum Classification: Sendable {
     case twoPointsDistance
     case addVectors
+    case posVelTime
 }
 
 extension Classification {
@@ -15,6 +16,7 @@ extension Classification {
         switch self {
             case .twoPointsDistance: "Distance Between Two Points"
             case .addVectors: "Adding Vectors to Derive Final Position"
+            case .posVelTime: "Find a Position given a Vector and a Quantity of Time"
         }
     }
 
@@ -22,6 +24,7 @@ extension Classification {
         switch self {
             case .twoPointsDistance: DistanceProblem.prompt
             case .addVectors: PositionProblem.prompt
+            case .posVelTime: PositionVelTimeProblem.prompt
         }
     }
 
@@ -29,6 +32,7 @@ extension Classification {
         switch self {
             case .twoPointsDistance: DistanceProblem.from(llmOutput: llmOutput)
             case .addVectors: PositionProblem.from(llmOutput: llmOutput)
+            case .posVelTime: PositionVelTimeProblem.from(llmOutput: llmOutput)
         }
     }
 }

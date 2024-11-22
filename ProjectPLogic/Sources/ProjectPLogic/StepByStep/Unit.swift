@@ -8,6 +8,14 @@
 public enum Unit: Sendable, Equatable {
     case none // temporary
     case distance(DistanceUnit)
+    case time(TimeUnit)
+}
+
+// placeholder - conversions can be implemented later
+public enum TimeUnit: Sendable {
+    case second
+    case minute
+    case hour
 }
 
 extension Unit {
@@ -15,6 +23,7 @@ extension Unit {
         switch self {
             case .none: ""
             case .distance(let unit): unit.suffix
+            case .time: ""
         }
     }
 }
