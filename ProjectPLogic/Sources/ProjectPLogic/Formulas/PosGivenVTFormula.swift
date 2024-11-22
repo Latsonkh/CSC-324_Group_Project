@@ -6,6 +6,7 @@
 //
 
 struct PosGivenVTFormula: Formula {
+
     typealias Input = (Vector, Vector, Value)
     typealias Output = Vector
 
@@ -26,4 +27,10 @@ struct PosGivenVTFormula: Formula {
     func toString() -> String {
         "x_f = x_i + v * t"
     }
+}
+
+extension PosGivenVTFormula: CustomStringConvertible {
+        var description: String {
+            "x_f = x_i + v * t"
+        }
 }

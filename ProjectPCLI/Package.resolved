@@ -1,0 +1,32 @@
+{
+  "originHash" : "5935703071f47cc2008aed2d36d942c9f310c1b4ff980e2319ee36a22e2d4405",
+  "pins" : [
+    {
+      "identity" : "llama.cpp",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ggerganov/llama.cpp/",
+      "state" : {
+        "revision" : "cda0e4b648dde8fac162b3430b14a99597d3d74f"
+      }
+    },
+    {
+      "identity" : "llm.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/eastriverlee/LLM.swift.git",
+      "state" : {
+        "branch" : "pinned",
+        "revision" : "48546489c46c8d116a320ad6bc031bbd714fd8c0"
+      }
+    },
+    {
+      "identity" : "swift-argument-parser",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-argument-parser.git",
+      "state" : {
+        "revision" : "41982a3656a71c768319979febd796c6fd111d5c",
+        "version" : "1.5.0"
+      }
+    }
+  ],
+  "version" : 3
+}

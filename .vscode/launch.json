@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:CSC-324_Group_Project}/ProjectPCLI",
+            "name": "Debug ProjectPCLI (ProjectPCLI)",
+            "program": "${workspaceFolder:CSC-324_Group_Project}/ProjectPCLI/.build/debug/ProjectPCLI",
+            "preLaunchTask": "swift: Build Debug ProjectPCLI (ProjectPCLI)"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:CSC-324_Group_Project}/ProjectPCLI",
+            "name": "Release ProjectPCLI (ProjectPCLI)",
+            "program": "${workspaceFolder:CSC-324_Group_Project}/ProjectPCLI/.build/release/ProjectPCLI",
+            "preLaunchTask": "swift: Build Release ProjectPCLI (ProjectPCLI)"
+        }
+    ]
+}

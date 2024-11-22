@@ -6,6 +6,7 @@
 //
 
 struct AddVectorsFormula: Formula {
+
     typealias Input = [Vector]
     typealias Output = Point
 
@@ -25,8 +26,10 @@ struct AddVectorsFormula: Formula {
         // return a vector that is a sum of all input vectors
         return Vector.init(x: Value.init(value: totalx, unit: Unit.none), y: Value.init(value: totaly, unit: Unit.none))
     }
+}
 
-    func toString() -> String {
-        "v1 + v2 + v3 ..."
-    }
+extension AddVectorsFormula: CustomStringConvertible {
+        var description: String {
+            "v1 + v2 + v3 ..."
+        }
 }
