@@ -23,6 +23,9 @@ struct ContentView: View {
     @State private var showingDocumentScanner = false
     @State private var scannedImage: UIImage?
 
+    @State private var error: Error?
+    @State private var showingErrorAlert = false
+
     var body: some View {
         Group {
             if loading {
@@ -66,18 +69,27 @@ A person walks in the following pattern: 3.1 km north, then 2.4 km west, and fin
 
                 Task {
                     do {
-                        let exampleSolution = try await exampleDistanceProblem()
+                        let problem = try await ImageManager.extractText(from: image)
+                        print("got problem:", problem)
+                        let exampleSolution = try await solve(problem: problem)
                         self.solution = exampleSolution
                         self.showingSolution = true
                         self.loading = false
                     } catch {
-                        print("Error fetching solution:", error)
+                        print("error:", error, error.localizedDescription)
+                        self.error = error
+                        self.showingErrorAlert = true
                         self.loading = false
                     }
                 }
                 self.showingDocumentScanner = false
             }
             .ignoresSafeArea()
+        }
+        .alert("Error", isPresented: $showingErrorAlert) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text(error?.localizedDescription ?? "Error encountered while fetching solution.")
         }
     }
 }

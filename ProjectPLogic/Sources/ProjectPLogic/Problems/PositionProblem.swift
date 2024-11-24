@@ -17,7 +17,7 @@ extension PositionProblem: LLMParsable {
     // TODO: write prompt
     static let prompt = "this prompt is not yet written"
 
-    public static func from(llmOutput: String) -> Self {
+    public static func from(llmOutput: String) -> Self? {
         fatalError("todo")
     }
 }

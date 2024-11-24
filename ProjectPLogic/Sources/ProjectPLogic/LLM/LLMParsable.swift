@@ -7,5 +7,5 @@
 
 /// An object that's parsable from an LLM output string
 public protocol LLMParsable {
-    static func from(llmOutput: String) -> Self
+    static func from(llmOutput: String) -> Self?
 }

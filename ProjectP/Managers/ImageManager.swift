@@ -10,16 +10,22 @@ import UIKit
 import SwiftUI
 
 class ImageManager {
-    static func extractText(from image: UIImage) async -> String {
+    enum ExtractionError: Error {
+        case missingCGImage
+        case textRecognitionFailed(Error)
+        case requestHandlerFailed(Error)
+    }
+
+    static func extractText(from image: UIImage) async throws -> String {
         guard let cgImage = image.cgImage else {
-            return "Failed to convert UIImage to CGImage."
+            throw ExtractionError.missingCGImage
         }
 
-        return await withCheckedContinuation { continuation in
+        return try await withCheckedThrowingContinuation { continuation in
             // Create a request for recognizing text
             let request = VNRecognizeTextRequest { request, error in
                 if let error {
-                    continuation.resume(returning: "Error during text recognition: \(error.localizedDescription)")
+                    continuation.resume(throwing: ExtractionError.textRecognitionFailed(error))
                 }
 
                 // Extract recognized text from the results
@@ -40,7 +46,7 @@ class ImageManager {
                 do {
                     try requestHandler.perform([request])
                 } catch {
-                    continuation.resume(returning: "Failed to perform text recognition: \(error.localizedDescription)")
+                    continuation.resume(throwing: ExtractionError.requestHandlerFailed(error))
                 }
             }
         }
