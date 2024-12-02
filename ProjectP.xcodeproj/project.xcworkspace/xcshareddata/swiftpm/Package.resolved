@@ -1,5 +1,5 @@
 {
-  "originHash" : "270c716a5e4f8eb2c9c591cdbcfcaf6c1c856d227a857e4d4acec186d4cc7b8d",
+  "originHash" : "bca6e0b7ad1ab0c2d9d95c3df70fcf8edc699e030c44787e6e38f9a963e3bd9d",
   "pins" : [
     {
       "identity" : "generative-ai-swift",
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/colinc86/LaTeXSwiftUI",
       "state" : {
-        "revision" : "766be13e75a901cd0097122be189bac88b5b1963",
-        "version" : "1.3.2"
+        "branch" : "main",
+        "revision" : "766be13e75a901cd0097122be189bac88b5b1963"
       }
     },
     {
@@ -53,15 +53,6 @@
       "state" : {
         "revision" : "d8ca73197f59ce260c71bd6d7f6eb8bbdccf508b",
         "version" : "4.0.1"
-      }
-    },
-    {
-      "identity" : "swiftlintplugins",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/SimplyDanny/SwiftLintPlugins",
-      "state" : {
-        "revision" : "7c80ce6f142164b0201871e580b021d1b2c69804",
-        "version" : "0.57.0"
       }
     }
   ],

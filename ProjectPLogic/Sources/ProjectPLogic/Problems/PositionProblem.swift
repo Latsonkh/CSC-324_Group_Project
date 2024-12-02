@@ -14,11 +14,39 @@ final class PositionProblem {
 }
 
 extension PositionProblem: LLMParsable {
-    // TODO: write prompt
-    static let prompt = "this prompt is not yet written"
-
-    public static func from(llmOutput: String) -> Self? {
-        fatalError("todo")
+    static let prompt = """
+    The problem below deals with finding a final displacement vector
+    by adding multiple vectors. Identify these vectors and encode them
+    as follows:
+    
+    vOne = (x1, y1)
+    vTwo = (x2, y2)
+    ...
+    vN = (xN, yN)
+    
+    Do not solve the problem. Do not explain the problem. 
+    """
+    
+    public static func from(llmOutput: String) -> PositionProblem? {
+        let numbers = MathParser.getNumbers(from: llmOutput)
+        
+        let v = { value in
+            Value(value: value, unit: .distance(.meter(.kilo)))
+        }
+        
+        var vectors: [Vector] = []
+        for idx in stride(from: 0, to: numbers.count, by: 2) {
+            let x = numbers[idx]
+            let y = numbers[idx + 1]
+            
+            vectors.append(Vector(x: v(x), y: v(y))!)
+        }
+        
+        let input = Input(variables: vectors.enumerated().map { idx, vector in
+            Variable(name: "v\(idx)", value: vector)
+        })
+        
+        return PositionProblem(input: input)
     }
 }
 

@@ -14,9 +14,10 @@ public actor LLMHandler {
     public static let shared = LLMHandler()
 
     func askLLM(question: String) async throws -> String {
-        guard let apiKey = Bundle.main.infoDictionary?["API_KEY"] as? String else {
-            fatalError("missing api key")
-        }
+//        guard let apiKey = Bundle.main.infoDictionary?["API_KEY"] as? String else {
+//            fatalError("missing api key")
+//        }
+        let apiKey = "AIzaSyDfx4vAJZlFPm8ysriU2CV8pcbUg4mhMZI"
 
         let model = GenerativeModel(
             name: "gemini-1.5-flash",
