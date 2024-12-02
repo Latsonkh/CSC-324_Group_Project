@@ -44,8 +44,8 @@ extension DistanceProblem: LLMParsable {
 
         let input = Input(
             variables: [
-                Variable(name: "p_1", value: p1),
-                Variable(name: "p_2", value: p2)
+                Variable(name: "p_1", value: .point(p1)),
+                Variable(name: "p_2", value: .point(p2))
             ]
         )
 
@@ -102,20 +102,21 @@ extension DistanceProblem: LLMParsable {
 
 extension DistanceProblem: Problem {
     public func solve() throws(ProblemError) -> Output {
-        let p1 = input.get("p_1")?.value as? Point
-        let p2 = input.get("p_2")?.value as? Point
-        guard let p1, let p2 else {
+        guard
+            case let .point(p1) = input.get("p_1")?.value,
+            case let .point(p2) = input.get("p_2")?.value
+        else {
             throw .invalidInput
         }
 
-        let formula = DistanceFormula(input: (p1, p2))
+        let formula = DistanceFormula(input: PointPair(p1: p1, p2: p2))
         guard let answer = formula.evaluate() else {
             throw .invalidInput
         }
 
         return Output(
             steps: [
-                Step.applyFormula(formula)
+                Step.applyFormula(.distance(formula))
             ],
             answer: OutputValue.value(answer)
         )

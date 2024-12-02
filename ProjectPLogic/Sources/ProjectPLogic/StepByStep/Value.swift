@@ -6,7 +6,7 @@
 //
 
 /// A numeric value with an associated unit
-public struct Value: Sendable {
+public struct Value: Sendable, Codable {
     let value: Double
     let unit: Unit
 }

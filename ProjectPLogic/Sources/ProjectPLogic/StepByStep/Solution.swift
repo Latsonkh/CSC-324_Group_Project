@@ -5,7 +5,7 @@
 //  Created by Caelan on 11/13/24.
 //
 
-public struct Solution: Sendable {
+public struct Solution: Sendable, Codable {
     public let classification: Classification
     let input: Input
     let output: Output
