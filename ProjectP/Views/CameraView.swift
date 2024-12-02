@@ -25,6 +25,10 @@ struct CameraView: View {
         NavigationStack {
             GeometryReader { geometry in
                 ZStack {
+                    Rectangle()
+                        .fill(.black)
+                        .ignoresSafeArea()
+
                     CameraPreviewView(model: model)
                         .ignoresSafeArea()
 

@@ -5,12 +5,12 @@
 //  Created by Caelan on 11/11/24.
 //
 
-public struct Output: Sendable {
+public struct Output: Sendable, Codable {
     public let steps: [Step]
     public let answer: OutputValue
 }
 
-public enum OutputValue: Sendable {
+public enum OutputValue: Sendable, Codable {
     case value(Value)
     case vector(Vector)
 }

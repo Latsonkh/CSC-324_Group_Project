@@ -25,7 +25,11 @@ extension PositionProblem: LLMParsable {
 extension PositionProblem: Problem {
     public func solve() throws(ProblemError) -> Output {
         let vectors: [Vector] = input.variables.compactMap {
-            $0.value as? Vector
+            if case .vector(let value) = $0.value {
+                value
+            } else {
+                nil
+            }
         }
 
         let formula = AddVectorsFormula(input: vectors)
@@ -35,7 +39,7 @@ extension PositionProblem: Problem {
 
         return Output(
             steps: [
-                Step.applyFormula(formula)
+                Step.applyFormula(.addVectors(formula))
             ],
             answer: OutputValue.vector(answer)
         )

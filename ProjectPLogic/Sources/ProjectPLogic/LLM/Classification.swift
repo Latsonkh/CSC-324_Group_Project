@@ -5,9 +5,15 @@
 //  Created by Caelan on 11/13/24.
 //
 
-public enum Classification: String, Sendable, CaseIterable {
+public enum Classification: String, Sendable, CaseIterable, Codable {
     case twoPointsDistance = "Distance Between Two Points"
     case addVectors = "Adding Vectors to Derive Final Position"
+}
+
+extension Classification {
+    static func getList() -> [String] {
+        allCases.map(\.description)
+    }
 }
 
 extension Classification {

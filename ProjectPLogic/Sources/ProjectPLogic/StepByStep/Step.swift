@@ -5,10 +5,10 @@
 //  Created by Caelan on 11/11/24.
 //
 
-public enum Step: Sendable {
+public enum Step: Sendable, Codable {
     case classify(Classification)
     case setupInput(Input)
-    case applyFormula(any Formula)
+    case applyFormula(FormulaInstance)
 }
 
 extension Step {

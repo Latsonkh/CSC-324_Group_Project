@@ -5,7 +5,7 @@
 //  Created by Caelan on 11/13/24.
 //
 
-public protocol Formula: Sendable {
+public protocol Formula: Sendable, Codable {
     associatedtype Input
     associatedtype Output
 
@@ -14,4 +14,18 @@ public protocol Formula: Sendable {
     var description: String { get }
 
     func evaluate() -> Output?
+}
+
+public enum FormulaInstance: Sendable, Codable {
+    case distance(DistanceFormula)
+    case addVectors(AddVectorsFormula)
+}
+
+extension FormulaInstance {
+    var description: String {
+        switch self {
+            case .distance(let f): f.description
+            case .addVectors(let f): f.description
+        }
+    }
 }
