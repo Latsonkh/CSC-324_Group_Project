@@ -13,16 +13,19 @@ public struct AddVectorsFormula: Formula {
 
     public func evaluate() -> Output? {
         // Sum the x and y components of vectors in the array
-        var totalx: Double = 0
-        var totaly: Double = 0
+        var totalX = 0.0
+        var totalY = 0.0
 
         for v in input {
-            totalx += v.x.value
-            totaly += v.y.value
+            totalX += v.x.value
+            totalY += v.y.value
         }
 
         // return a vector that is a sum of all input vectors
-        return Vector.init(x: Value(value: totalx, unit: Unit.none), y: Value(value: totaly, unit: Unit.none))
+        return Vector(
+            x: Value(value: totalX, unit: .distance(.meter(.kilo))),
+            y: Value(value: totalY, unit: .distance(.meter(.kilo)))
+        )
     }
 
     public var description: String {

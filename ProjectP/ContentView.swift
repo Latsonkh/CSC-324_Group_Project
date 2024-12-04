@@ -14,20 +14,22 @@ enum ProblemInput: Identifiable {
         switch self {
             case .text(let string):
                 string.hashValue
-            case .image(let image):
+            case .image(let image, _):
                 image.hashValue
         }
     }
 
     case text(String)
-    case image(UIImage)
+    case image(UIImage, String)
 }
 
 extension ProblemInput: Codable {
     init(from decoder: any Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        if let data = try? container.decode(Data.self), let image = UIImage(data: data) {
-            self = .image(image)
+        var container = try decoder.unkeyedContainer()
+        if let data = try? container.decodeIfPresent(Data.self),
+           let image = UIImage(data: data),
+           let text = try? container.decode(String.self) {
+            self = .image(image, text)
         } else if let string = try? container.decode(String.self) {
             self = .text(string)
         } else {
@@ -36,12 +38,13 @@ extension ProblemInput: Codable {
     }
 
     func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
+        var container = encoder.unkeyedContainer()
         switch self {
             case .text(let string):
                 try container.encode(string)
-            case .image(let image):
+            case .image(let image, let string):
                 try container.encode(image.pngData())
+                try container.encode(string)
         }
     }
 }
@@ -115,6 +118,14 @@ struct ContentView: View {
                     .padding(.bottom)
                 }
 
+                if loading {
+                    Rectangle()
+                        .fill(.black)
+                        .opacity(0.8)
+                        .ignoresSafeArea()
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                }
             }
             .navigationTitle("Physics Helper")
             .searchable(text: $searchText)
@@ -131,7 +142,7 @@ struct ContentView: View {
                         let problem = try await ImageManager.extractText(from: image)
                         print("got problem:", problem)
                         let solution = try await solve(problem: problem)
-                        let solutionData = SolutionData(problem: .image(image), solution: solution)
+                        let solutionData = SolutionData(problem: .image(image, problem), solution: solution)
                         self.solutionData = solutionData
                         HistoryManager.add(solution: solutionData)
                         history?.append(solutionData)
@@ -167,13 +178,12 @@ struct ContentView: View {
     @ViewBuilder
     func historyButton(for data: SolutionData) -> some View {
         let button = Button {
-            self.loading = true
             self.solutionData = data
         } label: {
             switch data.problem {
                 case .text(let text):
                     Text(text)
-                case .image(let image):
+                case .image(let image, _):
                     Image(uiImage: image)
                         .resizable()
                         .aspectRatio(contentMode: .fit)

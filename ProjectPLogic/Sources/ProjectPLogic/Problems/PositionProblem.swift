@@ -14,11 +14,33 @@ final class PositionProblem {
 }
 
 extension PositionProblem: LLMParsable {
-    // TODO: write prompt
-    static let prompt = "this prompt is not yet written"
+    static let prompt = """
+    The problem below deals with adding different vectors. 
+    Identify all the vectors problem, and encode them as follows:
+    pA = (x1, y1)
+    pB = (x2, y2)
+    ...
+
+    Do not solve the problem. Do not explain the problem. 
+    """
 
     public static func from(llmOutput: String) -> Self? {
-        fatalError("todo")
+        let numbers = StringParser.getNumbers(from: llmOutput)
+        if numbers.count % 2 != 0 {
+            // must have an even amount
+            return nil
+        }
+
+        let vectors: [Vector] = stride(from: 0, to: numbers.count, by: 2).compactMap {
+            Vector(
+                x: .init(value: numbers[$0], unit: .distance(.meter(.kilo))),
+                y: .init(value: numbers[$0 + 1], unit: .distance(.meter(.kilo)))
+            )
+        }
+
+        return Self(input: .init(variables: vectors.enumerated().map {
+            Variable(name: "v_\($0.offset + 1)", value: .vector($0.element))
+        }))
     }
 }
 

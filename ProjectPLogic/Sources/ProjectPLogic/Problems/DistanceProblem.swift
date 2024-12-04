@@ -18,7 +18,7 @@ final class DistanceProblem {
 
 extension DistanceProblem: LLMParsable {
     static let prompt = """
-    The problem below deals with finding the distance between two points. 
+    The problem below deals with finding the distance between two points (with one of them likely being the origin). 
     Identify the two points in the problem, and encode them as follows:
     pA = (x1, y1)
     pB = (x2, y2)
@@ -27,7 +27,7 @@ extension DistanceProblem: LLMParsable {
     """
 
     public static func from(llmOutput: String) -> DistanceProblem? {
-        let numbers = getNumbers(from: llmOutput)
+        let numbers = StringParser.getNumbers(from: llmOutput)
         guard numbers.count >= 4 else { return nil }
 
         let (p1_x, p1_y, p2_x, p2_y) = (numbers[0], numbers[1], numbers[2], numbers[3])
@@ -50,53 +50,6 @@ extension DistanceProblem: LLMParsable {
         )
 
         return DistanceProblem(input: input)
-    }
-
-    private static func getNumbers(from string: String) -> [Double] {
-        let components = string
-            .replacingOccurrences(of: ",", with: " ")
-            .replacingOccurrences(of: "(", with: " ")
-            .replacingOccurrences(of: ")", with: " ")
-            .components(separatedBy: .whitespaces)
-            .filter { !$0.isEmpty }
-
-        var numbers: [Double] = []
-
-        for component in components {
-            // try to convert each component to a Double
-            if let number = Double(component.trimmingCharacters(in: .whitespaces)) {
-                numbers.append(number)
-            } else {
-                // try to handle stuff like "1+2" or "1-2"
-                let chars = Array(component)
-                var currentNumber = ""
-                var allNumbers: [Double] = []
-
-                for (index, char) in chars.enumerated() {
-                    if char.isNumber || char == "." || (char == "-" && index == 0) {
-                        currentNumber.append(char)
-                    } else if char == "+" || char == "-" {
-                        if let num = Double(currentNumber) {
-                            allNumbers.append(num)
-                        }
-                        currentNumber = String(char)
-                    }
-                }
-
-                if !currentNumber.isEmpty, let lastNum = Double(currentNumber) {
-                    allNumbers.append(lastNum)
-                }
-
-                if allNumbers.count == 2 {
-                    let result = (chars.contains("+")) ?
-                        allNumbers[0] + allNumbers[1] :
-                        allNumbers[0] - allNumbers[1]
-                    numbers.append(result)
-                }
-            }
-        }
-
-        return numbers
     }
 }
 

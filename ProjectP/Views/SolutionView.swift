@@ -13,6 +13,8 @@ public struct SolutionView: View {
     let problem: ProblemInput
     let solution: Solution
 
+    @State var showingText: Bool = false
+
     @Environment(\.dismiss) var dismiss
 
     public var body: some View {
@@ -21,19 +23,34 @@ public struct SolutionView: View {
                 VStack(alignment: .leading) {
                     Text("Problem")
                         .font(.headline)
+                        .padding(.bottom, 0.01)
                     switch problem {
                         case .text(let string):
                             Text(string)
-                        case .image(let image):
-                            Image(uiImage: image)
-                                .resizable()
-                                .scaledToFit()
-                                .clipShape(RoundedRectangle(cornerRadius: 6))
+                        case .image(let image, let text):
+                            Button {
+                                showingText.toggle()
+                            } label: {
+                                if showingText {
+                                    Text(text)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                        .multilineTextAlignment(.leading)
+                                } else {
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .clipShape(RoundedRectangle(cornerRadius: 6))
+                                }
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .multilineTextAlignment(.leading)
+                            .tint(.primary)
                     }
 
                     Text("Answer")
                         .font(.headline)
                         .padding(.top)
+                        .padding(.bottom, 0.01)
                     LaTeX("$\(solution.answer.description)$")
                 }
                 .padding()

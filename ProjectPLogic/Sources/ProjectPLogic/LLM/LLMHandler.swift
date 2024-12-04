@@ -32,9 +32,7 @@ public actor LLMHandler {
     public func classify(problem: String) async throws -> Classification {
         let prompt = """
         Respond with only one of the following classifications:
-        \(Classification.allCases.enumerated().map { idx, item in
-            "- \(item.description)"
-        }.joined(separator: "\n"))
+        \(Classification.getList().joined(separator: "\n"))
         
         Respond "None" if no classifications fit the problem. 
         Do not solve the problem. Do not explain the problem.
@@ -44,7 +42,7 @@ public actor LLMHandler {
 
         let answer = try await askLLM(question: prompt).trimmingCharacters(in: .whitespacesAndNewlines)
 
-        print("answer:", answer)
+        print("classification answer:", answer)
 
         guard let classification = Classification.fromString(name: answer) else {
             throw LLMError.classificationFailed
@@ -59,6 +57,8 @@ public actor LLMHandler {
         let prompt = classification.getPrompt() + "\n\n" + problem
 
         let answer = try await askLLM(question: prompt)
+
+        print("setup answer:", answer)
 
         return (classification, answer)
     }

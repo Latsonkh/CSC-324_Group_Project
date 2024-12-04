@@ -16,6 +16,7 @@ class HistoryManager {
         }
 
         guard let solutions = try? JSONDecoder().decode([SolutionData].self, from: historyData) else {
+            save(solutions: [])
             return []
         }
 
