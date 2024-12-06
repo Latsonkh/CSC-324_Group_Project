@@ -33,9 +33,6 @@ public struct DGivenVATFormula: Formula {
         return (initVel * time) + (0.5 * acc * (time*time))
     }
 }
-
-
-
 extension DGivenVATFormula: CustomStringConvertible {
     public var description: String {
         "\\Delta x = v_0 * t + \\frac{1}{2} a * t^2"
