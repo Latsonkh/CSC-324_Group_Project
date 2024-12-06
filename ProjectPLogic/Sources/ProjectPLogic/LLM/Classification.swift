@@ -8,7 +8,7 @@
 public enum Classification: String, Sendable, CaseIterable, Codable {
     case twoPointsDistance = "Distance Between Two Points"
     case addVectors = "Adding Vectors to Derive Final Position"
-    case DGivenVAT = "Deriving a Distance Given a Starting Velocity, Constant Acceleration Vector, and Time"
+    case dGivenVAT = "Deriving a Distance Given a Starting Velocity, Constant Acceleration Vector, and Time"
 }
 
 extension Classification {
@@ -26,7 +26,7 @@ extension Classification {
         switch self {
             case .twoPointsDistance: DistanceProblem.prompt
             case .addVectors: PositionProblem.prompt
-            case .DGivenVAT: DGivenVATProblem.prompt
+            case .dGivenVAT: DGivenVATProblem.prompt
         }
     }
 
@@ -34,7 +34,7 @@ extension Classification {
         switch self {
             case .twoPointsDistance: DistanceProblem.from(llmOutput: llmOutput)
             case .addVectors: PositionProblem.from(llmOutput: llmOutput)
-            case .DGivenVAT: DGivenVATProblem.from(llmOutput: llmOutput)
+            case .dGivenVAT: DGivenVATProblem.from(llmOutput: llmOutput)
         }
     }
     
