@@ -19,6 +19,7 @@ public protocol Formula: Sendable, Codable {
 public enum FormulaInstance: Sendable, Codable {
     case distance(DistanceFormula)
     case addVectors(AddVectorsFormula)
+    case DGivenVAT(DGivenVATFormula)
 }
 
 extension FormulaInstance {
@@ -26,6 +27,7 @@ extension FormulaInstance {
         switch self {
             case .distance(let f): f.description
             case .addVectors(let f): f.description
+            case .DGivenVAT(let f): f.description
         }
     }
 }
