@@ -69,7 +69,7 @@ extension DGivenVATProblem: Problem {
 
         return Output(
             steps: [
-                Step.applyFormula(.DGivenVAT(formula))
+                Step.applyFormula(.dGivenVAT(formula))
             ],
             answer: OutputValue.vector(answer)
         )
