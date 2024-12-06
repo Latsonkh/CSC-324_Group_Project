@@ -74,6 +74,7 @@ public struct SolutionView: View {
                                 } label: {
                                     HStack(spacing: 4) {
                                         Text(classification.description)
+                                            .multilineTextAlignment(.leading)
                                         Image(systemName: "info.circle.fill")
                                     }
                                 }

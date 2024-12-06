@@ -23,8 +23,8 @@ public struct DGivenVATFormula: Formula {
         let acc = input.acc
         let time = input.time.value
         return Vector(
-            x: Value(value: eval1D(initVel: initVel.x.value, acc: acc.x.value, time: time), unit: Unit.none),
-            y: Value(value: eval1D(initVel: initVel.y.value, acc: acc.y.value, time: time), unit: Unit.none)
+            x: Value(value: eval1D(initVel: initVel.x.value, acc: acc.x.value, time: time), unit: .distance(.meter(.base))),
+            y: Value(value: eval1D(initVel: initVel.y.value, acc: acc.y.value, time: time), unit: .distance(.meter(.base)))
         )
     }
 

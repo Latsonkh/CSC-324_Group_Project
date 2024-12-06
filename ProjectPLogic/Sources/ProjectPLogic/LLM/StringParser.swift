@@ -13,14 +13,14 @@ class StringParser {
             .replacingOccurrences(of: ",", with: " ")
             .replacingOccurrences(of: "(", with: " ")
             .replacingOccurrences(of: ")", with: " ")
-            .components(separatedBy: .whitespaces)
+            .components(separatedBy: .whitespacesAndNewlines)
             .filter { !$0.isEmpty }
 
         var numbers: [Double] = []
 
         for component in components {
             // try to convert each component to a Double
-            if let number = Double(component.trimmingCharacters(in: .whitespaces)) {
+            if let number = Double(component.trimmingCharacters(in: .whitespacesAndNewlines)) {
                 numbers.append(number)
             } else {
                 // try to handle stuff like "1+2" or "1-2"

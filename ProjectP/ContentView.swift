@@ -191,8 +191,8 @@ struct ContentView: View {
         }
         .contextMenu {
             Button(role: .destructive) {
-                HistoryManager.delete(solution: data)
                 history?.removeAll { $0.id == data.id }
+                HistoryManager.save(solutions: history ?? [])
             } label: {
                 Label("Delete", systemImage: "trash")
             }

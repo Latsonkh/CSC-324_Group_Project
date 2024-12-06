@@ -29,21 +29,21 @@ extension DGivenVATProblem: LLMParsable {
 
     public static func from(llmOutput: String) -> DGivenVATProblem? {
         let numbers = StringParser.getNumbers(from: llmOutput)
-        guard numbers.count >= 4 else { return nil }
+        guard numbers.count >= 5 else { return nil }
 
-        let (v_x, v_y, a_x, a_y, t) = (numbers[0], numbers[1], numbers[2], numbers[3], numbers[4])
+        let (vX, vY, aX, aY, t) = (numbers[0], numbers[1], numbers[2], numbers[3], numbers[4])
 
         guard
-            let v = Point(x: Value(value: v_x, unit: .none), y: Value(value: v_y, unit: .none)),
-            let a = Vector(x: Value(value: a_x, unit: .none), y: Value(value: a_y, unit: .none))
+            let v = Vector(x: Value(value: vX, unit: .distance(.meter(.base))), y: Value(value: vY, unit: .distance(.meter(.base)))),
+            let a = Vector(x: Value(value: aX, unit: .distance(.meter(.base))), y: Value(value: aY, unit: .distance(.meter(.base))))
         else {
             return nil
         }
 
         let input = Input(
             variables: [
-                Variable(name: "v", value: .point(v)),
-                Variable(name: "a", value: .point(a)),
+                Variable(name: "v", value: .vector(v)),
+                Variable(name: "a", value: .vector(a)),
                 Variable(name: "t", value: .double(t))
             ]
         )
@@ -63,15 +63,24 @@ extension DGivenVATProblem: Problem {
         }
 
         let formula = DGivenVATFormula(input: DGivenVATFormulaInput(initVel: v, acc: a, time: Value(value: t, unit: .none)))
-        guard let answer = formula.evaluate() else {
+        guard let deltaX = formula.evaluate() else {
+            throw .invalidInput
+        }
+
+        let distanceFormula = DistanceFormula(input: .init(
+            p1: .init(x: .init(value: 0, unit: .distance(.meter(.base))), y: .init(value: 0, unit: .distance(.meter(.base))))!,
+            p2: deltaX
+        ))
+        guard let finalAnswer = distanceFormula.evaluate() else {
             throw .invalidInput
         }
 
         return Output(
             steps: [
-                Step.applyFormula(.dGivenVAT(formula))
+                .applyFormula(.dGivenVAT(formula)),
+                .applyFormula(.distance(distanceFormula))
             ],
-            answer: OutputValue.vector(answer)
+            answer: .value(finalAnswer)
         )
     }
 }
